@@ -8,6 +8,17 @@ namespace GeometricLayouts.Models
 {
     public class TriangleLayout : IGeometricLayout
     {
+        private int MaxRow { get; }
+        private int MaxCol { get; }
+        private int LegWidth { get; }
+
+        public TriangleLayout(int MaxRow, int MaxCol, int LegWidth)
+        {
+            this.MaxRow = MaxRow;
+            this.MaxCol = MaxCol;
+            this.LegWidth = LegWidth;
+        }
+
         public IEnumerable<IShape> GenerateLayout()
         {
             throw new NotImplementedException();
