@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricLayouts", "GeometricLayouts\GeometricLayouts.csproj", "{FCB4F67D-8C90-4EA1-8214-737E4D408E90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeometricLayouts", "GeometricLayouts\GeometricLayouts.csproj", "{FCB4F67D-8C90-4EA1-8214-737E4D408E90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricLayouts.Tests", "GeometricLayouts.Tests\GeometricLayouts.Tests.csproj", "{13476239-F47E-4C1C-AA5E-5FC569BAB75A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FCB4F67D-8C90-4EA1-8214-737E4D408E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCB4F67D-8C90-4EA1-8214-737E4D408E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCB4F67D-8C90-4EA1-8214-737E4D408E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13476239-F47E-4C1C-AA5E-5FC569BAB75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13476239-F47E-4C1C-AA5E-5FC569BAB75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13476239-F47E-4C1C-AA5E-5FC569BAB75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13476239-F47E-4C1C-AA5E-5FC569BAB75A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
