@@ -35,6 +35,11 @@ namespace GeometricLayouts.Models
             return new Triangle(id, v1X, v1Y, LegLength, colNum % 2 == 1);
         }
 
+        public string GetShapeIdFromVertexCoordinates(int v1X, int v1y, int v2X, int v2y, int v3X, int v3y)
+        {
+            throw new NotImplementedException();
+        }
+
         #region Private Helpers
         private int GetXOffsetPosition(int col)
         {

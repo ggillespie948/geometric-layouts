@@ -27,7 +27,18 @@ namespace GeometricLayouts.Tests
             Assert.Equal(expectedOutput, output);
         }
 
+        [Theory]
+        [InlineData("A1")]
+        [InlineData("A2")]
+        public void GetShapeIdFromVertextCoordinates_Returns_Expected_Output(string Id)
+        {
+            Triangle inputTriangle = GetExpectedTriangleOutput(Id);
+            TriangleLayout layoutGenerator = new TriangleLayout(6, 12, 10);
 
+            var outputId = layoutGenerator.GetShapeIdFromVertexCoordinates(inputTriangle.V1.X, inputTriangle.V1.Y, inputTriangle.V2.X, inputTriangle.V2.Y, inputTriangle.V3.X, inputTriangle.V3.Y);
+
+            Assert.Equal(inputTriangle.Id, outputId);
+        }
 
         private static Triangle GetExpectedTriangleOutput(string Id)
         {
