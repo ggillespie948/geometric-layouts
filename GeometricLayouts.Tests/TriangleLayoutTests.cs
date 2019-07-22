@@ -30,6 +30,14 @@ namespace GeometricLayouts.Tests
         [Theory]
         [InlineData("A1")]
         [InlineData("A2")]
+        [InlineData("A11")]
+        [InlineData("A12")]
+        [InlineData("B1")]
+        [InlineData("B2")]
+        [InlineData("B3")]
+        [InlineData("B4")]
+        [InlineData("F11")]
+        [InlineData("F12")]
         public void GetShapeIdFromVertextCoordinates_Returns_Expected_Output(string Id)
         {
             Triangle inputTriangle = GetExpectedTriangleOutput(Id);
