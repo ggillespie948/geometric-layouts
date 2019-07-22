@@ -10,13 +10,13 @@ namespace GeometricLayouts.Models
     {
         private int MaxRow { get; }
         private int MaxCol { get; }
-        private int LegWidth { get; }
+        private int LegLength { get; }
 
-        public TriangleLayout(int MaxRow, int MaxCol, int LegWidth)
+        public TriangleLayout(int maxRow, int maxCol, int legLength)
         {
-            this.MaxRow = MaxRow;
-            this.MaxCol = MaxCol;
-            this.LegWidth = LegWidth;
+            this.MaxRow = maxRow;
+            this.MaxCol = maxCol;
+            this.LegLength = legLength;
         }
 
         public IEnumerable<IShape> GenerateLayout()
@@ -24,9 +24,32 @@ namespace GeometricLayouts.Models
             throw new NotImplementedException();
         }
 
-        public IShape GenerateShapeFromId(string Id)
+        public IShape GenerateShapeFromId(string id)
         {
-            throw new NotImplementedException();
+            if (!int.TryParse(id.Remove(0, 1), out int colNum))
+            {
+                throw new Exception("Error: could not parse column number from Id");
+            }
+            int v1X = GetXOffsetPosition(colNum);
+            int v1Y = GetYOffsetPosition(id.ToCharArray()[0]);
+            return new Triangle(id, v1X, v1Y, LegLength, colNum % 2 == 1);
         }
+
+        #region Private Helpers
+        private int GetXOffsetPosition(int col)
+        {
+            return col % 2 == 0 ? ((col * LegLength / 2) - LegLength) : (col + 1) * LegLength / 2 - LegLength;
+        }
+
+        private int GetYOffsetPosition(char letter)
+        {
+            return (LetterToNumber(letter) * LegLength) - LegLength;
+        }
+
+        private int LetterToNumber(char letter)
+        {
+            return char.ToUpper(letter) - 64;
+        }
+        #endregion
     }
 }

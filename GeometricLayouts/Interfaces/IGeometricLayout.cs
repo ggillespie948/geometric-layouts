@@ -8,6 +8,6 @@ namespace GeometricLayouts.Interfaces
     public interface IGeometricLayout
     {
         IEnumerable<IShape> GenerateLayout();
-        IShape GenerateShapeFromId(string Id);
+        IShape GenerateShapeFromId(string id);
     }
 }
