@@ -21,7 +21,15 @@ namespace GeometricLayouts.Models
 
         public IEnumerable<IShape> GenerateLayout()
         {
-            throw new NotImplementedException();
+            var layout = new List<Triangle>();
+            for (int i = 1; i < MaxRow + 1; i++)
+            {
+                for (int j = 1; j < MaxCol + 1; j++)
+                {
+                    layout.Add((Triangle)GenerateShapeFromId(NumberToLetter(i) + j));
+                }
+            }
+            return layout;
         }
 
         public IShape GenerateShapeFromId(string id)
