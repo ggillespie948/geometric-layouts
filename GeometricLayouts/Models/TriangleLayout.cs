@@ -35,9 +35,40 @@ namespace GeometricLayouts.Models
             return new Triangle(id, v1X, v1Y, LegLength, colNum % 2 == 1);
         }
 
-        public string GetShapeIdFromVertexCoordinates(int v1X, int v1y, int v2X, int v2y, int v3X, int v3y)
+        public string GetShapeIdFromVertexCoordinates(int v1X, int v1Y, int v2X, int v2Y, int v3X, int v3Y)
         {
-            throw new NotImplementedException();
+            string letterRow = "";
+            string numberColumn = "";
+
+            // TO DO: validate triangle coordinates actually make a valid right angled triangle
+
+            if (v1Y > v2Y)
+            {
+                // LOWER SECTION
+                if ((v1X + 1) % LegLength == 0 && (v1Y + 1) % LegLength == 0 || v1X == 0)
+                {
+                    letterRow = NumberToLetter((v1Y + 1) / LegLength);
+                    numberColumn = ((v2X + 1 + LegLength) / (LegLength / 2) - 1).ToString();
+                }
+                else
+                {
+                    throw new Exception("Error, triangle is invalid.");
+                }
+            }
+            else if (v1X > v2X)
+            {
+                // UPPER SECTION
+                if ((v1X + 1) % LegLength == 0 && (v1Y + 1) % LegLength == 0 || v1Y == 0)
+                {
+                    letterRow = NumberToLetter(((v1Y + 1) / LegLength) + 1);
+                    numberColumn = ((v2X + 1 + LegLength) / (LegLength / 2)).ToString();
+                }
+                else
+                {
+                    throw new Exception("Error, triangle is invalid.");
+                }
+            }
+            return letterRow + numberColumn;
         }
 
         #region Private Helpers
@@ -54,6 +85,12 @@ namespace GeometricLayouts.Models
         private int LetterToNumber(char letter)
         {
             return char.ToUpper(letter) - 64;
+        }
+
+        private string NumberToLetter(int number)
+        {
+            char c = (char)((65) + (number - 1));
+            return c.ToString();
         }
         #endregion
     }
