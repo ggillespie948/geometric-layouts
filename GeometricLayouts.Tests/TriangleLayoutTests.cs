@@ -1,5 +1,8 @@
 using GeometricLayouts.Models;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using Xunit;
 
 namespace GeometricLayouts.Tests
@@ -47,6 +50,29 @@ namespace GeometricLayouts.Tests
 
             Assert.Equal(inputTriangle.Id, outputId);
         }
+
+
+        [Theory]
+        [InlineData("A1")]
+        [InlineData("A2")]
+        [InlineData("A11")]
+        [InlineData("A12")]
+        [InlineData("B1")]
+        [InlineData("B2")]
+        [InlineData("B3")]
+        [InlineData("B4")]
+        [InlineData("F11")]
+        [InlineData("F12")]
+        public void GetVertices_IShape_Works_As_Expected(string Id)
+        {
+            Triangle expectedOutputVerticesTriangle = GetExpectedTriangleOutput(Id);
+            var expectedVertices = new List<Point>() { expectedOutputVerticesTriangle.V1, expectedOutputVerticesTriangle.V2, expectedOutputVerticesTriangle.V3 };
+
+            var output = expectedOutputVerticesTriangle.GetVertices().ToList();
+
+            Assert.Equal(expectedVertices, output);
+        }
+
 
         private static Triangle GetExpectedTriangleOutput(string Id)
         {

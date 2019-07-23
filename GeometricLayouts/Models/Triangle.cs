@@ -138,6 +138,11 @@ namespace GeometricLayouts.Models
             }
         }
 
+        public IEnumerable<Point> GetVertices()
+        {
+            return new List<Point> { this.V1, this.V2, this.V3 };
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Triangle triangle &&
