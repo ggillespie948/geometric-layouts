@@ -37,8 +37,8 @@ namespace GeometricLayouts.Models
         }
 
         /// <summary>
-        /// Given the x+y posiiton of a given sqaure on the grid, calculate either the 
-        /// lower right-angled triangle inside of that square.
+        /// Given the x+y posiiton of a given sqaure on the grid, calculate either of the 
+        /// right-angled triangles inside of that square (lower or upper)
         /// </summary>
         /// <param name="X1"></param>
         /// <param name="Y1"></param>
