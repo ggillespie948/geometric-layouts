@@ -26,6 +26,18 @@ namespace GeometricLayouts.Models
         /// </summary>
         public Point V3 { get; private set; }
 
+
+        /// <summary>
+        /// Center point of triangle used for label position wehn displaying
+        /// </summary>
+        public Point Centroid
+        {
+            get
+            {
+                return new Point((V1.X + V2.X + V3.X) / 3, (V1.Y + V2.Y + V3.Y) / 3);
+            }
+        }
+
         private int LegLength { get; set; }
 
         public Triangle(string id, int v1x, int v1y, int v2x, int v2y, int v3x, int v3y)
