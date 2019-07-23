@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from "axios";
+import Canvas from "./components/Canvas";
 
 class App extends Component {
   state = {
@@ -27,6 +28,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Geometric Layouts</h2>
         </div>
+        <Canvas triangles={this.state.triangles} />
       </div>
     );
   }
