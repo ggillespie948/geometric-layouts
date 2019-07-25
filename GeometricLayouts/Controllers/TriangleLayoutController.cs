@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GeometricLayouts.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class TriangleLayoutController : Controller
     {
         private readonly TriangleLayout _layoutUtility;
@@ -36,6 +36,16 @@ namespace GeometricLayouts.Controllers
                 return NotFound();
             else
                 return Ok(triangle);
+        }
+
+        [HttpGet]
+        public ActionResult FromVertex([FromQuery]int v1X, [FromQuery]int v1Y, [FromQuery]int v2X, [FromQuery]int v2Y, [FromQuery]int v3X, [FromQuery]int v3Y)
+        {
+            string triangleId = _layoutUtility.GetShapeIdFromVertexCoordinates(v1X, v1Y, v2X, v2Y, v3X, v3Y);
+            if (triangleId == "")
+                return NotFound();
+            else
+                return Ok(triangleId);
         }
     }
 }

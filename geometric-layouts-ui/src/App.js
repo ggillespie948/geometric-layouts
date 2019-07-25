@@ -11,7 +11,7 @@ class App extends Component {
   
   componentDidMount() {
     axios
-      .get("https://localhost:44382/api/trianglelayout", { crossdomain: true }) //note: local host port may differ
+      .get("https://localhost:44382/api/trianglelayout/get", { crossdomain: true }) //note: local host port may differ
       .then(data => {
         this.setState({triangles: data.data}); 
         console.log(this.state.triangles);
@@ -29,7 +29,6 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Geometric Layouts</h2>
         </div>
-        <h2>Triangle Layout</h2>
         <Canvas triangles={this.state.triangles} />
       </div>
     );
