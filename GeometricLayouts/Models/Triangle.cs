@@ -28,7 +28,7 @@ namespace GeometricLayouts.Models
 
 
         /// <summary>
-        /// Center point of triangle used for label position wehn displaying
+        /// Center point of triangle used for label position when displaying
         /// </summary>
         public Point Centroid
         {
@@ -111,14 +111,14 @@ namespace GeometricLayouts.Models
         }
 
 
-        private Point CalculateUpperVertex(bool lowerCongruent)
+        private Point CalculateUpperVertex(bool lowerSection)
         {
             if (V1 == null)
             {
                 throw new Exception("Error: Right Angle Vertex has not been set!");
             }
 
-            if (lowerCongruent)
+            if (lowerSection)
                 if (V1.Y == 9)
                     return new Point(V1.X, V1.Y - (this.LegLength - 1));
                 else

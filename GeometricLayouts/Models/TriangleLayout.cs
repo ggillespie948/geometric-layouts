@@ -36,10 +36,17 @@ namespace GeometricLayouts.Models
         {
             if (!int.TryParse(id.Remove(0, 1), out int colNum))
             {
-                throw new Exception("Error: could not parse column number from Id");
+                return null;
             }
+
+            var c = id.ToCharArray()[0];
+
+            if ((colNum > MaxCol || colNum < 1) || char.ToUpper(c) - 64 < 0 || char.ToUpper(c) - 64 > 26)
+                return null;
+
+
             int v1X = GetXOffsetPosition(colNum);
-            int v1Y = GetYOffsetPosition(id.ToCharArray()[0]);
+            int v1Y = GetYOffsetPosition(c);
             return new Triangle(id, v1X, v1Y, LegLength, colNum % 2 == 1);
         }
 
