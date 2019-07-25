@@ -73,6 +73,21 @@ namespace GeometricLayouts.Tests
             Assert.Equal(expectedVertices, output);
         }
 
+        [Theory]
+        [InlineData(0,9,0,0,9,9,true)]
+        [InlineData(49,9,49,0,59,9,true)]
+        [InlineData(19,9,9,9,19,19,true)]
+        [InlineData(1, 9, 0, 0, 9, 9, false)]
+        [InlineData(49, 19, 49, 0, 59, 9, false)]
+        [InlineData(19, 9, 99, 9, 19, 19, false)]
+        [InlineData(9, 0, 0, 0, 0, 9, false)]
+        public void VerticesMakeRightAngledTriangle_Returns_Expected_Output(int v1X, int v1Y, int v2X, int v2Y, int v3X, int v3Y, bool expectedOutcome)
+        {
+            TriangleLayout layoutGenerator = new TriangleLayout(6, 12, 10);
+
+            Assert.Equal(layoutGenerator.VerticesMakeRightAngledTriangle(v1X, v1Y, v2X, v2Y, v3X, v3Y), expectedOutcome);
+        }
+
 
         private static Triangle GetExpectedTriangleOutput(string Id)
         {

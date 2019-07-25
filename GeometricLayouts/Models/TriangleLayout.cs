@@ -43,39 +43,67 @@ namespace GeometricLayouts.Models
             return new Triangle(id, v1X, v1Y, LegLength, colNum % 2 == 1);
         }
 
+        public bool VerticesMakeRightAngledTriangle(int v1X, int v1Y, int v2X, int v2Y, int v3X, int v3Y)
+        {
+            if(v1Y > v2Y)
+            {
+                // LOWER SECTION
+                if (v1Y - v2Y == LegLength && v2X == v1X || v1Y - v2Y == LegLength - 1 && v2X == v1X
+                    &&
+                    v3X - v1X == LegLength && v1Y == v3Y || v3X - v1X == LegLength - 1 &&  v1Y == v3Y)
+                    return true;
+                else
+                    return false;
+            }
+            else if (v1X > v2X)
+            {
+                // UPPER SECTION
+                if (v1X - v2X == LegLength && v1Y == v2Y || v1X - v2X == LegLength-1 && v1Y == v2Y
+                    &&
+                    v3Y - v1Y == LegLength && v3X == v1X || v3Y - v1Y == LegLength-1 && v3X == v1X)
+                    return true;
+                else
+                    return false;
+            }
+
+            return false;
+        }
+
         public string GetShapeIdFromVertexCoordinates(int v1X, int v1Y, int v2X, int v2Y, int v3X, int v3Y)
         {
             string letterRow = "";
             string numberColumn = "";
 
-            // TO DO: validate triangle coordinates actually make a valid right angled triangle
+            if (VerticesMakeRightAngledTriangle(v1X, v1Y, v2X, v2Y, v3X, v3Y))
+            {
+                if (v1Y > v2Y)
+                {
+                    // LOWER SECTION
+                    if ((v1X + 1) % LegLength == 0 && (v1Y + 1) % LegLength == 0 || v1X == 0)
+                    {
+                        letterRow = NumberToLetter((v1Y + 1) / LegLength);
+                        numberColumn = ((v2X + 1 + LegLength) / (LegLength / 2) - 1).ToString();
+                    }
+                    else
+                    {
+                        throw new Exception("Error, triangle is invalid.");
+                    }
+                }
+                else if (v1X > v2X)
+                {
+                    // UPPER SECTION
+                    if ((v1X + 1) % LegLength == 0 && (v1Y + 1) % LegLength == 0 || v1Y == 0)
+                    {
+                        letterRow = NumberToLetter(((v1Y + 1) / LegLength) + 1);
+                        numberColumn = ((v2X + 1 + LegLength) / (LegLength / 2)).ToString();
+                    }
+                    else
+                    {
+                        throw new Exception("Error, triangle is invalid.");
+                    }
+                }
+            }
 
-            if (v1Y > v2Y)
-            {
-                // LOWER SECTION
-                if ((v1X + 1) % LegLength == 0 && (v1Y + 1) % LegLength == 0 || v1X == 0)
-                {
-                    letterRow = NumberToLetter((v1Y + 1) / LegLength);
-                    numberColumn = ((v2X + 1 + LegLength) / (LegLength / 2) - 1).ToString();
-                }
-                else
-                {
-                    throw new Exception("Error, triangle is invalid.");
-                }
-            }
-            else if (v1X > v2X)
-            {
-                // UPPER SECTION
-                if ((v1X + 1) % LegLength == 0 && (v1Y + 1) % LegLength == 0 || v1Y == 0)
-                {
-                    letterRow = NumberToLetter(((v1Y + 1) / LegLength) + 1);
-                    numberColumn = ((v2X + 1 + LegLength) / (LegLength / 2)).ToString();
-                }
-                else
-                {
-                    throw new Exception("Error, triangle is invalid.");
-                }
-            }
             return letterRow + numberColumn;
         }
 
